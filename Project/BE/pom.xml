@@ -55,12 +55,13 @@
             <version>2.5.0</version>
         </dependency>
 
-        <!-- MYSQL DRIVER (JAVA 17) -->
+        <!-- SQL Server (JAVA 17) -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.4.0</version>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <scope>runtime</scope>
         </dependency>
+
 
         <!-- JWT -->
         <dependency>
