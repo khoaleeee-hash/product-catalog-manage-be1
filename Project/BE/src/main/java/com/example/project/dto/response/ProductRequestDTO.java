@@ -1,4 +1,4 @@
-package com.example.project.dto.request;
+package com.example.project.dto.response;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
