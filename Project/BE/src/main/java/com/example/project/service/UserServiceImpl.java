@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     public LoginResponse login(LoginRequest request) {
 
-        User user = userRepository.findByEmailAndIsActiveTrue(request.getEmail())
+        User user = userRepository.findByEmailAndActiveTrue(request.getEmail())
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toEntity(request);
 
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setIsActive(true);
+        user.setActive(true);
         return userMapper.toRegisterResponse(userRepository.save(user));
     }
 
