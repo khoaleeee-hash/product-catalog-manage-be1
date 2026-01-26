@@ -1,4 +1,4 @@
-package com.example.project.service.Product;
+package com.example.project.service.implement;
 
 import com.example.project.dto.request.ProductRequest;
 import com.example.project.dto.response.ProductResponse;

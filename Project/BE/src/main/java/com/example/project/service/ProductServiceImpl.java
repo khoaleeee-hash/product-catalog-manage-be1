@@ -1,4 +1,4 @@
-package com.example.project.service.Product;
+package com.example.project.service;
 
 
 import com.example.project.dto.request.ProductRequest;
@@ -8,6 +8,7 @@ import com.example.project.entity.Category;
 import com.example.project.entity.Product;
 import com.example.project.repository.CategoryRepository;
 import com.example.project.repository.ProductRepository;
+import com.example.project.service.implement.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
