@@ -35,6 +35,6 @@ public class User {
     private Role role;
 
     @Column(name = "is_active", columnDefinition = "BIT DEFAULT 1")
-    private Boolean active = true;
+    private Boolean isActive = true;
 
 }

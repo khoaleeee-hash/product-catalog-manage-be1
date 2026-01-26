@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "active", constant = "true")
+    @Mapping(target = "isActive", constant = "true")
     @Mapping(target = "role", expression = "java(Role.CUSTOMER)")
     User toEntity(RegisterRequest request);
 
