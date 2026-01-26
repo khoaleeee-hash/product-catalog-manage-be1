@@ -4,42 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4e253c8-40b1-4ee7-8907-e4a548011843" name="Changes" comment="" />
+    <list default="true" id="75a9de04-9e7b-4dc3-9a69-878fbfabde8b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPENED",
-    "assignee": {
-      "type": "org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue",
-      "username": "DPKhang13",
-      "fullname": "Đặng Phúc Khang"
-    }
-  }
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
 }]]></component>
-  <component name="GitLabMergeRequestsSettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "first": "https://gitlab.com/daocrisdevilgamer/product-catalog-management-system.git",
-    "second": "79402a42-ffc3-4120-98d8-cb106cf0d582"
-  }
-}]]></component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="38bU4PZ4XrwzhRvo2mFCiu1cby6" />
+  <component name="ProjectId" id="38lyRgW1e52rjGZntqKpfdQC5qJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -47,13 +25,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/OJTProject/SpringBoostOJT/product-catalog-management-system/Project/BE/src/main/java/com/example/project/dto/request",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -63,35 +41,41 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OJTProject\SpringBoostOJT\product-catalog-management-system\Project\BE\src\main\java\com\example\project\dto\request" />
+      <recent name="D:\OJTProject\SpringBoostOJT\product-catalog-management-system\Project\BE\src\main\java\com\example\project\dto\response" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="ProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="lmsproject" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.project.ProjectApplication" />
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="product-catalog-management-system" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="product-catalog-management-system" />
+      <option name="filePath" />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a4e253c8-40b1-4ee7-8907-e4a548011843" name="Changes" comment="" />
-      <created>1769067571924</created>
+      <changelist id="75a9de04-9e7b-4dc3-9a69-878fbfabde8b" name="Changes" comment="" />
+      <created>1769388445569</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1769067571924</updated>
-      <workItem from="1769067573420" duration="5220000" />
-      <workItem from="1769140489351" duration="4620000" />
-      <workItem from="1769172162744" duration="299000" />
-      <workItem from="1769172515272" duration="21000" />
+      <updated>1769388445569</updated>
+      <workItem from="1769388446896" duration="2073000" />
     </task>
     <servers />
   </component>

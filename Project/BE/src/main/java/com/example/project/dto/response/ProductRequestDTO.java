@@ -1,4 +1,4 @@
-package com.example.project.dto.request;
+package com.example.project.dto.response;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 @Setter
 @Getter
-public class ProductRequest {
+public class ProductRequestDTO {
     @NotBlank(message = "Product name is required")
     private String productName;
 
