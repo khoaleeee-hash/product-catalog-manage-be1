@@ -3,7 +3,7 @@ package com.example.project.controller;
 import com.example.project.dto.request.CategoryRequest;
 import com.example.project.dto.response.ApiResponse;
 import com.example.project.dto.response.CategoryResponse;
-import com.example.project.service.implement.CategoryService;
+import com.example.project.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -5,7 +5,7 @@ import com.example.project.dto.request.RegisterRequest;
 import com.example.project.dto.response.ApiResponse;
 import com.example.project.dto.response.LoginResponse;
 import com.example.project.dto.response.RegisterResponse;
-import com.example.project.service.implement.UserService;
+import com.example.project.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

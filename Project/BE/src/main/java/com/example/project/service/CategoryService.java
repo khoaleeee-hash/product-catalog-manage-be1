@@ -1,4 +1,4 @@
-package com.example.project.service.implement;
+package com.example.project.service;
 
 import com.example.project.dto.request.CategoryRequest;
 import com.example.project.dto.response.CategoryResponse;

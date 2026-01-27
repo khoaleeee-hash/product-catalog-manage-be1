@@ -1,10 +1,10 @@
-package com.example.project.service;
+package com.example.project.service.implement;
 
 import com.example.project.dto.request.CategoryRequest;
 import com.example.project.dto.response.CategoryResponse;
 import com.example.project.entity.Category;
 import com.example.project.repository.CategoryRepository;
-import com.example.project.service.implement.CategoryService;
+import com.example.project.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
