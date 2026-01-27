@@ -41,7 +41,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Get all categories", description = "Admin can view all product categories")
-    @GetMapping("/getAllProducts")
+    @GetMapping("/getAllCategories")
     public ResponseEntity<ApiResponse<List<CategoryResponse>>> getAllCategories() {
         List<CategoryResponse> categories = categoryService.getAll();
         return ResponseEntity.ok(ApiResponse.success(categories));
@@ -74,7 +74,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Get all products", description = "Admin can view all products in the system")
-    @GetMapping("/getAllCategories")
+    @GetMapping("/getAllProducts")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getAllProducts() {
         List<ProductResponse> products = productService.getAll();
         return ResponseEntity.ok(ApiResponse.success(products));
