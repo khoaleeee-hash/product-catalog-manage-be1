@@ -33,7 +33,7 @@ public class AdminController {
     // ==================== Category Management ====================
 
     @Operation(summary = "Create a new category", description = "Admin can create a new product category")
-    @PostMapping("/categories")
+    @PostMapping("/create")
     public ResponseEntity<ApiResponse<CategoryResponse>> createCategory(@Valid @RequestBody CategoryRequest request) {
         CategoryResponse category = categoryService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -41,14 +41,14 @@ public class AdminController {
     }
 
     @Operation(summary = "Get all categories", description = "Admin can view all product categories")
-    @GetMapping("/categories")
+    @GetMapping("/getAll")
     public ResponseEntity<ApiResponse<List<CategoryResponse>>> getAllCategories() {
         List<CategoryResponse> categories = categoryService.getAll();
         return ResponseEntity.ok(ApiResponse.success(categories));
     }
 
     @Operation(summary = "Update a category", description = "Admin can update an existing category")
-    @PutMapping("/categories/{categoryId}")
+    @PutMapping("/update/{categoryId}")
     public ResponseEntity<ApiResponse<CategoryResponse>> updateCategory(
             @PathVariable Long categoryId,
             @Valid @RequestBody CategoryRequest request) {
@@ -57,7 +57,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Delete a category", description = "Admin can delete a category")
-    @DeleteMapping("/categories/{categoryId}")
+    @DeleteMapping("/delete/{categoryId}")
     public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Long categoryId) {
         categoryService.delete(categoryId);
         return ResponseEntity.ok(ApiResponse.success(null));
@@ -66,7 +66,7 @@ public class AdminController {
     // ==================== Product Management ====================
 
     @Operation(summary = "Create a new product", description = "Admin can add a new product with name, description, price, stock quantity, and category")
-    @PostMapping("/products")
+    @PostMapping("/create")
     public ResponseEntity<ApiResponse<ProductResponse>> createProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse product = productService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -74,14 +74,14 @@ public class AdminController {
     }
 
     @Operation(summary = "Get all products", description = "Admin can view all products in the system")
-    @GetMapping("/products")
+    @GetMapping("/getAll")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getAllProducts() {
         List<ProductResponse> products = productService.getAll();
         return ResponseEntity.ok(ApiResponse.success(products));
     }
 
     @Operation(summary = "Get product by ID", description = "Admin can view details of a specific product")
-    @GetMapping("/products/{productId}")
+    @GetMapping("/getId/{productId}")
     public ResponseEntity<ApiResponse<ProductResponse>> getProductById(@PathVariable Long productId) {
         ProductResponse product = productService.getAll().stream()
                 .filter(p -> p.getId().equals(productId))
@@ -91,7 +91,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Update a product", description = "Admin can edit product details")
-    @PutMapping("/products/{productId}")
+    @PutMapping("/update/{productId}")
     public ResponseEntity<ApiResponse<ProductResponse>> updateProduct(
             @PathVariable Long productId,
             @Valid @RequestBody ProductRequest request) {
@@ -100,7 +100,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Delete a product", description = "Admin can remove a product from the catalog")
-    @DeleteMapping("/products/{productId}")
+    @DeleteMapping("/delete/{productId}")
     public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long productId) {
         productService.delete(productId);
         return ResponseEntity.ok(ApiResponse.success(null));
