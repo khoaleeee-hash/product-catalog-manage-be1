@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
         }
 
         String token = jwtTokenProvider.generateToken(user.getEmail());
-        user.setRole(Role.ADMIN);
 
         return userMapper.toLoginResponse(user, token);
     }
@@ -56,6 +55,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setIsActive(true);
+        user.setRole(Role.CUSTOMER);
         return userMapper.toRegisterResponse(userRepository.save(user));
     }
 
