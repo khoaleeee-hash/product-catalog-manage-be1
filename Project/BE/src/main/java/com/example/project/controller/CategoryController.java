@@ -48,9 +48,9 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<CategoryResponse>> updateCategory(
-            @PathVariable Long categoryId,
+            @PathVariable Long id,
             @Valid @RequestBody CategoryRequest request) {
-        CategoryResponse category = categoryService.update(categoryId, request);
+        CategoryResponse category = categoryService.update(id, request);
         return ResponseEntity.ok(ApiResponse.success(category));
     }
 
@@ -58,8 +58,8 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Long categoryId) {
-        categoryService.delete(categoryId);
+    public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Long id) {
+        categoryService.delete(id);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
 }

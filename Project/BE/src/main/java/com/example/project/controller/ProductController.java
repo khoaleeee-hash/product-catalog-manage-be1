@@ -61,9 +61,9 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<ProductResponse>> updateProduct(
-            @PathVariable Long productId,
+            @PathVariable Long id,
             @Valid @RequestBody ProductRequest request) {
-        ProductResponse product = productService.update(productId, request);
+        ProductResponse product = productService.update(id, request);
         return ResponseEntity.ok(ApiResponse.success(product));
     }
 
@@ -71,8 +71,8 @@ public class ProductController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long productId) {
-        productService.delete(productId);
+    public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long id) {
+        productService.delete(id);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
 }
