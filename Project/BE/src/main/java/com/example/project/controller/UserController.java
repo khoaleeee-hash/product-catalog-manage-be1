@@ -5,14 +5,13 @@ import com.example.project.dto.request.RegisterRequest;
 import com.example.project.dto.response.ApiResponse;
 import com.example.project.dto.response.LoginResponse;
 import com.example.project.dto.response.RegisterResponse;
+import com.example.project.entity.User;
 import com.example.project.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -32,6 +31,13 @@ public class UserController {
             @Valid @RequestBody RegisterRequest request
     ) {
         return userService.register(request);
+    }
+    @GetMapping("/profile")
+    public User profile(HttpServletRequest request) {
+
+        String token = request.getHeader("Authorization").substring(7);
+
+        return userService.getProfile(token);
     }
 
     @PostMapping("/logout")

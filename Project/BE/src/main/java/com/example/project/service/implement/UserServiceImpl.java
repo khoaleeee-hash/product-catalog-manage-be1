@@ -58,5 +58,25 @@ public class UserServiceImpl implements UserService {
         user.setRole(Role.CUSTOMER);
         return userMapper.toRegisterResponse(userRepository.save(user));
     }
+    @Override
+    public User getProfile(String token) {
+
+        if (token == null || token.isBlank()) {
+            throw new RuntimeException("Token trống");
+        }
+
+        if (!jwtTokenProvider.validateToken(token)) {
+            throw new RuntimeException("Token không hợp lệ");
+        }
+
+        String email = jwtTokenProvider.extractEmail(token);
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User không tồn tại"));
+    }
+
+
+
+
 
 }
