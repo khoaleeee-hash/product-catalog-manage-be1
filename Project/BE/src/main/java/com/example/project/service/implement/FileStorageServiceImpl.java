@@ -4,34 +4,58 @@ import com.example.project.service.FileStorageService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.UUID;
-
 
 @Service
 public class FileStorageServiceImpl implements FileStorageService {
+
+    private static final String UPLOAD_DIR = "uploads/products";
+
     @Override
     public String saveImage(MultipartFile file) {
+
+
+        if (file == null || file.isEmpty()) {
+            throw new RuntimeException("File is empty");
+        }
+
+
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("image/")) {
+            throw new RuntimeException("File must be an image");
+        }
+
         try {
-            // validate
-            if (!file.getContentType().startsWith("image/")) {
-                throw new RuntimeException("File must be image");
-            }
 
-            String UPLOAD_DIR = "uploads/products/";
-            Files.createDirectories(Paths.get(UPLOAD_DIR));
+            Path uploadPath = Paths.get(UPLOAD_DIR);
+            Files.createDirectories(uploadPath);
 
-            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-            Path filePath = Paths.get(UPLOAD_DIR + fileName);
 
-            Files.write(filePath, file.getBytes());
+            String originalName = file.getOriginalFilename();
+            String cleanName = originalName == null ? "image"
+                    : originalName
+                    .replaceAll("\\s+", "_")
+                    .replaceAll("[^a-zA-Z0-9._-]", "");
+
+
+            String fileName = UUID.randomUUID() + "_" + cleanName;
+            Path filePath = uploadPath.resolve(fileName);
+
+
+            Files.copy(
+                    file.getInputStream(),
+                    filePath,
+                    StandardCopyOption.REPLACE_EXISTING
+            );
+
 
             return "/uploads/products/" + fileName;
-        } catch (Exception e) {
-            throw new RuntimeException("Upload image failed");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Upload image failed", e);
         }
     }
 }
-

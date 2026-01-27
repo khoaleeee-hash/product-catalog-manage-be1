@@ -27,7 +27,7 @@ public class ProductController {
 
     @Operation(summary = "Create a new product",
                description = "Admin can add a new product with name (required), description, price (required, positive), stock quantity (required, non-negative), and category")
-    @PostMapping
+    @PostMapping("/createProduct")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<ProductResponse>> createProduct(@Valid @RequestPart("product") ProductRequest request,
@@ -48,8 +48,8 @@ public class ProductController {
 
     @Operation(summary = "Get product by ID (Admin)", description = "Admin can view details of a specific product")
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @SecurityRequirement(name = "bearerAuth")
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<ProductResponse>> getProductByIdAdmin(@PathVariable Long id) {
         ProductResponse product = productService.getAllProduct().stream()
                 .filter(p -> p.getId().equals(id))
@@ -64,8 +64,9 @@ public class ProductController {
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<ProductResponse>> updateProduct(
             @PathVariable Long id,
-            @Valid @RequestBody ProductRequest request) {
-        ProductResponse product = productService.updateProduct(id, request);
+            @Valid @RequestPart("product") ProductRequest request,
+            @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) {
+        ProductResponse product = productService.updateProduct(id, request,imageFile);
         return ResponseEntity.ok(ApiResponse.success(product));
     }
 

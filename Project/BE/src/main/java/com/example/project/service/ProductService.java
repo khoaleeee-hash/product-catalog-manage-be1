@@ -10,7 +10,7 @@ public interface ProductService {
 
     ProductResponse createProduct (ProductRequest request, MultipartFile file);
     List<ProductResponse> getAllProduct();
-    ProductResponse updateProduct(Long id, ProductRequest request);
+    ProductResponse updateProduct(Long id, ProductRequest request, MultipartFile file);
     void deleteProduct (Long id);
 
 }
