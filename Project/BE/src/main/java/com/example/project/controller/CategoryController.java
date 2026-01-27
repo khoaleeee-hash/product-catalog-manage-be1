@@ -34,7 +34,7 @@ public class CategoryController {
                 .body(ApiResponse.success(category));
     }
 
-    @Operation(summary = "Get all categories", description = "Admin can view all product categories")
+    @Operation(summary = "Get all categories", description = "View all product categories")
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
