@@ -18,6 +18,10 @@ public interface ProductService {
     ProductResponse updateProduct(Long id, ProductRequest request);
     void deleteProduct (Long id);
     List<ProductResponse> search(String keyword);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+
 >>>>>>> Stashed changes
 
 }
