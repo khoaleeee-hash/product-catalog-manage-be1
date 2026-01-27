@@ -40,12 +40,6 @@ public class AdminController {
                 .body(ApiResponse.success(category));
     }
 
-    @Operation(summary = "Get all categories", description = "Admin can view all product categories")
-    @GetMapping("/getAllCategories")
-    public ResponseEntity<ApiResponse<List<CategoryResponse>>> getAllCategories() {
-        List<CategoryResponse> categories = categoryService.getAll();
-        return ResponseEntity.ok(ApiResponse.success(categories));
-    }
 
     @Operation(summary = "Update a category", description = "Admin can update an existing category")
     @PutMapping("/update/{categoryId}")
@@ -73,12 +67,6 @@ public class AdminController {
                 .body(ApiResponse.success(product));
     }
 
-    @Operation(summary = "Get all products", description = "Admin can view all products in the system")
-    @GetMapping("/getAllProducts")
-    public ResponseEntity<ApiResponse<List<ProductResponse>>> getAllProducts() {
-        List<ProductResponse> products = productService.getAll();
-        return ResponseEntity.ok(ApiResponse.success(products));
-    }
 
     @Operation(summary = "Get product by ID", description = "Admin can view details of a specific product")
     @GetMapping("/getId/{productId}")
