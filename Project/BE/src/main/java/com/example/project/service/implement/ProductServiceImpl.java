@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public ProductResponse create (ProductRequest request){
+    public ProductResponse createProduct (ProductRequest request){
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() ->  new RuntimeException("Category not found"));
 
@@ -46,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponse> getAll() {
+    public List<ProductResponse> getAllProduct() {
         return productRepository.findAll()
                 .stream()
                 .map(p -> new ProductResponse(
@@ -61,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse update(Long id, ProductRequest request) {
+    public ProductResponse updateProduct(Long id, ProductRequest request) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
@@ -85,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
     @Override

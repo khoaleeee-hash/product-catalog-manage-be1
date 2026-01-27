@@ -30,7 +30,7 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<ProductResponse>> createProduct(@Valid @RequestBody ProductRequest request) {
-        ProductResponse product = productService.create(request);
+        ProductResponse product = productService.createProduct(request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(product));
     }
@@ -40,7 +40,7 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getAllProductsAdmin() {
-        List<ProductResponse> products = productService.getAll();
+        List<ProductResponse> products = productService.getAllProduct();
         return ResponseEntity.ok(ApiResponse.success(products));
     }
 
@@ -48,9 +48,9 @@ public class ProductController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<ApiResponse<ProductResponse>> getProductByIdAdmin(@PathVariable Long productId) {
-        ProductResponse product = productService.getAll().stream()
-                .filter(p -> p.getId().equals(productId))
+    public ResponseEntity<ApiResponse<ProductResponse>> getProductByIdAdmin(@PathVariable Long id) {
+        ProductResponse product = productService.getAllProduct().stream()
+                .filter(p -> p.getId().equals(id))
                 .findFirst()
                 .orElseThrow();
         return ResponseEntity.ok(ApiResponse.success(product));
@@ -63,12 +63,8 @@ public class ProductController {
     public ResponseEntity<ApiResponse<ProductResponse>> updateProduct(
             @PathVariable Long id,
             @Valid @RequestBody ProductRequest request) {
-        ProductResponse product = productService.update(id, request);
+        ProductResponse product = productService.updateProduct(id, request);
         return ResponseEntity.ok(ApiResponse.success(product));
-    }
-    @GetMapping("/search")
-    public List<ProductResponse> search(@RequestParam String keyword) {
-        return productService.search(keyword);
     }
 
     @GetMapping("/search")
@@ -81,7 +77,7 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long id) {
-        productService.delete(id);
+        productService.deleteProduct(id);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
 }

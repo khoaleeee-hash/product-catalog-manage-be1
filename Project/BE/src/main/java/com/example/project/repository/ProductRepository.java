@@ -8,16 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-<<<<<<< Updated upstream
-    List<Product> findByNameContainingIgnoreCaseOrCategory_NameContainingIgnoreCase(
-            String productName,
-            String categoryName
-    );
-=======
         List<Product> findByNameContainingIgnoreCaseOrCategory_NameContainingIgnoreCase(
                 String productName,
                 String categoryName
         );
->>>>>>> Stashed changes
 }
-
