@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public CategoryResponse create(CategoryRequest request) {
+    public CategoryResponse createCategory (CategoryRequest request) {
         Category category = new Category();
         category.setName(request.getCategoryName());
         Category save = categoryRepository.save(category);
@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> getAll() {
+    public List<CategoryResponse> getAllCategory() {
         return categoryRepository.findAll()
                 .stream()
                 .map(c -> new CategoryResponse(c.getName(), c.getId()))
@@ -34,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponse update(Long id, CategoryRequest request) {
+    public CategoryResponse updateCategory (Long id, CategoryRequest request) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
         category.setName(request.getCategoryName());
@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteCategory (Long id) {
         categoryRepository.deleteById(id);
     }
 }

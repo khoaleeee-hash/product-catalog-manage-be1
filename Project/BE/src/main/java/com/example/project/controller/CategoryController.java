@@ -29,7 +29,7 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<CategoryResponse>> createCategory(@Valid @RequestBody CategoryRequest request) {
-        CategoryResponse category = categoryService.create(request);
+        CategoryResponse category = categoryService.createCategory(request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(category));
     }
@@ -39,7 +39,7 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<List<CategoryResponse>>> getAllCategories() {
-        List<CategoryResponse> categories = categoryService.getAll();
+        List<CategoryResponse> categories = categoryService.getAllCategory();
         return ResponseEntity.ok(ApiResponse.success(categories));
     }
 
@@ -50,7 +50,7 @@ public class CategoryController {
     public ResponseEntity<ApiResponse<CategoryResponse>> updateCategory(
             @PathVariable Long id,
             @Valid @RequestBody CategoryRequest request) {
-        CategoryResponse category = categoryService.update(id, request);
+        CategoryResponse category = categoryService.updateCategory(id, request);
         return ResponseEntity.ok(ApiResponse.success(category));
     }
 
@@ -59,7 +59,7 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Long id) {
-        categoryService.delete(id);
+        categoryService.deleteCategory(id);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
 }
