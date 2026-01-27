@@ -1,5 +1,6 @@
 package com.example.project.dto.response;
 
+import com.example.project.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -8,6 +8,7 @@ import com.example.project.dto.response.RegisterResponse;
 import com.example.project.entity.Role;
 import com.example.project.entity.User;
 import com.example.project.mapper.UserMapper;
+import com.example.project.repository.ProductRepository;
 import com.example.project.repository.UserRepository;
 import com.example.project.security.JwtTokenProvider;
 import com.example.project.service.implement.UserService;
@@ -22,10 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final ProductRepository productRepository;
 
     public LoginResponse login(LoginRequest request) {
 
@@ -60,5 +63,6 @@ public class UserServiceImpl implements UserService {
         user.setIsActive(true);
         return userMapper.toRegisterResponse(userRepository.save(user));
     }
+
 
 }
