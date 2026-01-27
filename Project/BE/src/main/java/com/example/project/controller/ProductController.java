@@ -75,11 +75,4 @@ public class ProductController {
         productService.delete(productId);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
-
-    // ==================== PUBLIC/CUSTOMER ENDPOINTS (To be implemented) ====================
-    // Note: Người code phần Customer có thể thêm các endpoints sau:
-    // - GET /api/products - View all products (public, no authentication)
-    // - GET /api/products/{id} - View product details (public)
-    // - GET /api/products/category/{categoryId} - Filter by category (public)
-    // - GET /api/products/search?name=... - Search products by name (public)
 }
