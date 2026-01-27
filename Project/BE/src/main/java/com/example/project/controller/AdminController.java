@@ -33,7 +33,7 @@ public class AdminController {
     // ==================== Category Management ====================
 
     @Operation(summary = "Create a new category", description = "Admin can create a new product category")
-    @PostMapping("/create")
+    @PostMapping("/create-category")
     public ResponseEntity<ApiResponse<CategoryResponse>> createCategory(@Valid @RequestBody CategoryRequest request) {
         CategoryResponse category = categoryService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -41,7 +41,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Get all categories", description = "Admin can view all product categories")
-    @GetMapping("/getAll")
+    @GetMapping("/getAll-categories")
     public ResponseEntity<ApiResponse<List<CategoryResponse>>> getAllCategories() {
         List<CategoryResponse> categories = categoryService.getAll();
         return ResponseEntity.ok(ApiResponse.success(categories));
@@ -66,7 +66,7 @@ public class AdminController {
     // ==================== Product Management ====================
 
     @Operation(summary = "Create a new product", description = "Admin can add a new product with name, description, price, stock quantity, and category")
-    @PostMapping("/create")
+    @PostMapping("/create-produt")
     public ResponseEntity<ApiResponse<ProductResponse>> createProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse product = productService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -74,7 +74,7 @@ public class AdminController {
     }
 
     @Operation(summary = "Get all products", description = "Admin can view all products in the system")
-    @GetMapping("/getAll")
+    @GetMapping("/getAll-products")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getAllProducts() {
         List<ProductResponse> products = productService.getAll();
         return ResponseEntity.ok(ApiResponse.success(products));
