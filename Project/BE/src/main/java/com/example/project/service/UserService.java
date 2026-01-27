@@ -10,6 +10,6 @@ import com.example.project.entity.User;
 public interface UserService {
     LoginResponse login(LoginRequest request);
     RegisterResponse register(RegisterRequest request);
-    User getProfile(String email);
+
 
 }

@@ -32,13 +32,7 @@ public class UserController {
     ) {
         return userService.register(request);
     }
-    @GetMapping("/profile")
-    public User profile(HttpServletRequest request) {
-
-        String token = request.getHeader("Authorization").substring(7);
-
-        return userService.getProfile(token);
-    }
+    
 
     @PostMapping("/logout")
     public ApiResponse<Void> logout() {
