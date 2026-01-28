@@ -12,5 +12,6 @@ public interface ProductService {
     List<ProductResponse> getAllProduct();
     ProductResponse updateProduct(Long id, ProductRequest request, MultipartFile file);
     void deleteProduct (Long id);
+    List<ProductResponse> search(String keyword);
 
 }

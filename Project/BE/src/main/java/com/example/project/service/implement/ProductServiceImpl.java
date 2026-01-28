@@ -26,10 +26,10 @@ public class ProductServiceImpl implements ProductService {
     private final FileStorageService fileStorageService;
 
     @Override
-    public ProductResponse createProduct (ProductRequest request, MultipartFile imageFile) {
+    public ProductResponse createProduct(ProductRequest request, MultipartFile imageFile) {
         String imageUrl = fileStorageService.saveImage(imageFile);
         Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() ->  new RuntimeException("Category not found"));
+                .orElseThrow(() -> new RuntimeException("Category not found"));
 
         Product product = new Product();
         product.setName(request.getProductName());
@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse updateProduct(Long id, ProductRequest request,MultipartFile imageFile) {
+    public ProductResponse updateProduct(Long id, ProductRequest request, MultipartFile imageFile) {
         String imageUrl = fileStorageService.saveImage(imageFile);
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -98,4 +98,39 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public List<ProductResponse> search(String keyword) {
+
+        List<Product> products =
+                productRepository
+                        .findByNameContainingIgnoreCaseOrCategory_NameContainingIgnoreCase(
+                                keyword,
+                                keyword
+                        );
+
+        return products.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    private ProductResponse map(Product p) {
+
+        CategoryResponse category = new CategoryResponse(
+                p.getCategory().getName(),
+                p.getCategory().getId()
+        );
+
+
+        return new ProductResponse(
+                p.getId(),
+                p.getName(),
+                p.getDescription(),
+                p.getPrice(),
+                p.getStockQuantity(),
+                p.getImageUrl(),
+                category
+        );
+    }
+
 }

@@ -70,6 +70,11 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.success(product));
     }
 
+    @GetMapping("/search")
+    public List<ProductResponse> search(@RequestParam String keyword) {
+        return productService.search(keyword);
+    }
+
     @Operation(summary = "Delete a product", description = "Admin can remove a product from the catalog")
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
