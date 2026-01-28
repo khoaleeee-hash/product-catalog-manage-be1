@@ -50,17 +50,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public RegisterResponse register(RegisterRequest request) {
+
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new IllegalStateException("EMAIL_ALREADY_EXISTS");
         }
 
-        User user = userMapper.toEntity(request);
+        User user = new User();
+        user.setEmail(request.getEmail());
+        user.setFullName(request.getFullName());
+        user.setPhone(request.getPhone());
+        user.setAddress(request.getAddress());
 
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setIsActive(true);
         user.setRole(Role.CUSTOMER);
+        user.setIsActive(true);
+
         return userMapper.toRegisterResponse(userRepository.save(user));
     }
+
     @Override
     public User getProfile(String token) {
 

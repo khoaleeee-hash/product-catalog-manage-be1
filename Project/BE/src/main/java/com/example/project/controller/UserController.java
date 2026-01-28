@@ -27,18 +27,30 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public RegisterResponse register(
+    public ResponseEntity<ApiResponse<RegisterResponse>> register(
             @Valid @RequestBody RegisterRequest request
     ) {
-        return userService.register(request);
+        return ResponseEntity.ok(
+                ApiResponse.success(userService.register(request))
+        );
     }
+
     @GetMapping("/profile")
-    public User profile(HttpServletRequest request) {
+    public ResponseEntity<ApiResponse<User>> profile(HttpServletRequest request) {
 
-        String token = request.getHeader("Authorization").substring(7);
+        String authHeader = request.getHeader("Authorization");
 
-        return userService.getProfile(token);
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new RuntimeException("Missing or invalid Authorization header");
+        }
+
+        String token = authHeader.substring(7);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(userService.getProfile(token))
+        );
     }
+
 
     @PostMapping("/logout")
     public ApiResponse<Void> logout() {
