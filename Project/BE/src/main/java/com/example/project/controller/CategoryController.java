@@ -36,8 +36,8 @@ public class CategoryController {
 
     @Operation(summary = "Get all categories", description = "View all product categories")
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    @SecurityRequirement(name = "bearerAuth")
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<List<CategoryResponse>>> getAllCategories() {
         List<CategoryResponse> categories = categoryService.getAllCategory();
         return ResponseEntity.ok(ApiResponse.success(categories));
