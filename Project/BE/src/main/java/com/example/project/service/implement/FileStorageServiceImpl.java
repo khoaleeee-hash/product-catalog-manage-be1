@@ -58,4 +58,26 @@ public class FileStorageServiceImpl implements FileStorageService {
             throw new RuntimeException("Upload image failed", e);
         }
     }
+
+    @Override
+    public String updateImage(String existingFilePath, MultipartFile newFile) {
+        if (newFile == null || newFile.isEmpty()) {
+            return existingFilePath;
+        }
+
+        String contentType = newFile.getContentType();
+        if (contentType == null || !contentType.startsWith("/uploads/")) {
+            throw new RuntimeException("File must be an image");
+        }
+        try {
+            if (existingFilePath != null && !existingFilePath.isEmpty()) {
+                Path oldPath = Paths.get(existingFilePath.replaceFirst("^/", ""));
+                Files.deleteIfExists(oldPath);
+            }
+            return saveImage(newFile);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Update image failed", e);
+        }
+    }
 }

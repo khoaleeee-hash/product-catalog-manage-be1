@@ -69,12 +69,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse updateProduct(Long id, ProductRequest request,MultipartFile imageFile) {
-        String imageUrl = fileStorageService.saveImage(imageFile);
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        String imageUrl = fileStorageService.updateImage(product.getImageUrl(),  imageFile);
 
         product.setName(request.getProductName());
         product.setDescription(request.getDescription());

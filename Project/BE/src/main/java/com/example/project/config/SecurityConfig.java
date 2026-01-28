@@ -7,6 +7,7 @@ import com.example.project.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -38,20 +39,40 @@ public class SecurityConfig {
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
+//                        .requestMatchers(
+//                                "/api/user/register",
+//                                "/api/user/login",
+//                                "/swagger-ui/**",
+//                                "/v3/api-docs/**",
+//                                "/api/products",
+//                                "/api/products/{id}",
+//                                "/uploads/**",
+//                                "/api/categories"
+//                        ).permitAll()
+//
+//                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+//
+//                        .anyRequest().authenticated()
+//                )
+                        //PUBLIC
+                                .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+                                .requestMatchers(
                                 "/api/user/register",
                                 "/api/user/login",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/api/products",
-                                "/api/products/{id}",
-                                "/uploads/**",
-                                "/api/categories"
+                                "/uploads/**"
                         ).permitAll()
 
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                                // ADMIN
+                                .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
 
-                        .anyRequest().authenticated()
+                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+                                .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
