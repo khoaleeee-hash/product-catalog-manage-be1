@@ -65,6 +65,9 @@ public class SecurityConfig {
                                 "/uploads/**"
                         ).permitAll()
 
+                        //Authenticated
+                                .requestMatchers("/api/cart/**").authenticated()
+
                                 // ADMIN
                                 .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")

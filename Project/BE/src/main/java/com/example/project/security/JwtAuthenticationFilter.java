@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,13 +21,17 @@ import java.util.List;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
+    private final CustomUserDetailsService userDetailsService;
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return path.equals("/api/user/login")
+        return path.startsWith("/api/user/")
                 || path.startsWith("/swagger-ui")
-                || path.startsWith("/v3/api-docs");
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/uploads")
+                || path.startsWith("/api/products")
+                || path.startsWith("/api/categories");
     }
 
     @Override
@@ -41,28 +46,46 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
 
+//            if (jwtTokenProvider.validateToken(token)) {
+//                String email = jwtTokenProvider.extractEmail(token);
+//
+//                var user = userRepository.findByEmail(email).orElse(null);
+//
+//                if (user != null && Boolean.TRUE.equals(user.getIsActive())) {
+//
+//                    var auth = new UsernamePasswordAuthenticationToken(
+//                            user,
+//                            null,
+//                            List.of(
+//                                    new SimpleGrantedAuthority(
+//                                            "ROLE_" + user.getRole().name()
+//                                    )
+//                            )
+//                    );
+//
+//                    SecurityContextHolder.getContext()
+//                            .setAuthentication(auth);
+//                }
+//            }
+//        }
             if (jwtTokenProvider.validateToken(token)) {
                 String email = jwtTokenProvider.extractEmail(token);
 
-                var user = userRepository.findByEmail(email).orElse(null);
+                UserDetails userDetails =
+                        userDetailsService.loadUserByUsername(email);
 
-                if (user != null && Boolean.TRUE.equals(user.getIsActive())) {
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
+                        );
 
-                    var auth = new UsernamePasswordAuthenticationToken(
-                            user,
-                            null,
-                            List.of(
-                                    new SimpleGrantedAuthority(
-                                            "ROLE_" + user.getRole().name()
-                                    )
-                            )
-                    );
-
-                    SecurityContextHolder.getContext()
-                            .setAuthentication(auth);
-                }
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authentication);
             }
         }
+
 
         filterChain.doFilter(request, response);
     }
