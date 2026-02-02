@@ -19,6 +19,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse createCategory (CategoryRequest request) {
+        if (categoryRepository.existsByName(request.getCategoryName())) {
+            throw new IllegalStateException("CATEGORY_ALREADY_EXISTS");
+        }
         Category category = new Category();
         category.setName(request.getCategoryName());
         Category save = categoryRepository.save(category);
@@ -37,6 +40,10 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse updateCategory (Long id, CategoryRequest request) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        if (categoryRepository.existsByName(request.getCategoryName())) {
+            throw new IllegalStateException("CATEGORY_ALREADY_EXISTS");
+        }
         category.setName(request.getCategoryName());
         return new CategoryResponse(category.getName(), category.getId());
     }
